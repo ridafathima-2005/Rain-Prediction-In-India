@@ -1,76 +1,130 @@
-# Rain Prediction in India 🌧️
+# 🌧️ Rain Prediction in India
 
 ## 📌 Project Overview
 
-This project analyzes historical rainfall patterns across Indian subdivisions and provides a machine-learning-based forecast of rainfall for the year **2016**.
+This project analyzes historical rainfall patterns across Indian subdivisions using rainfall data from **1901–2015** and generates a machine-learning-based rainfall forecast for **2016**.
 
-The project uses historical rainfall data from **1901–2015** to identify annual, seasonal, and regional rainfall patterns and generate an out-of-sample rainfall forecast for Indian subdivisions.
+An interactive **Power BI dashboard** is included for historical, seasonal, regional, and prediction analysis.
 
-An interactive **Power BI dashboard** is included to visualize the historical analysis, seasonal patterns, regional statistics, and 2016 rainfall predictions.
-
-> **Important:** The 2016 rainfall values shown in this project are machine-learning model forecasts, not observed rainfall. The prediction uses information available through 2015 only.
-
----
+> **Note:** 2016 values are machine-learning forecasts, not observed rainfall.
 
 ## 🎯 Objectives
 
-The main objectives of this project are:
-
-- Analyze historical rainfall patterns in India.
-- Study annual rainfall trends from 1901 to 2015.
-- Analyze rainfall across different seasons.
-- Compare rainfall patterns between Indian subdivisions.
-- Identify rainfall variability across regions.
-- Build a machine-learning pipeline for rainfall prediction.
-- Forecast rainfall for 2016 at the Indian subdivision level.
-- Present the analysis through an interactive Power BI dashboard.
-
----
+- Analyze historical rainfall trends in India.
+- Study seasonal rainfall patterns.
+- Compare rainfall across Indian subdivisions.
+- Analyze regional rainfall variability.
+- Build a machine-learning model for rainfall prediction.
+- Forecast rainfall for 2016.
+- Create an interactive Power BI dashboard.
 
 ## 📊 Dataset
 
-The project uses historical rainfall data covering the period:
+The dataset contains Indian rainfall information from **1901–2015**, including monthly, seasonal, annual, and subdivision-level rainfall.
 
-**1901–2015**
+### Seasons
 
-The dataset contains rainfall information for Indian subdivisions, including:
+- Winter: January–February
+- Pre-Monsoon: March–May
+- Monsoon: June–September
+- Post-Monsoon: October–December
 
-- Monthly rainfall
-- Annual rainfall
-- Seasonal rainfall
+## 🧹 Data Processing
+
+The project includes:
+
+- Data cleaning and preprocessing
+- Duplicate checking
+- Missing-value analysis
+- Seasonal and annual rainfall validation
+- Time-series feature engineering
+- Data leakage checks
+
+## 🤖 Machine Learning
+
+The project uses historical rainfall features such as:
+
+- Annual rainfall lags
+- Rolling rainfall averages
+- Rolling standard deviation
+- Previous-year seasonal rainfall
+
+### Model
+
+**Random Forest Regressor**
+
+The model generates an out-of-sample rainfall forecast for **2016** at the Indian subdivision level using information available through 2015.
+
+## 🔮 2016 Forecast
+
+The forecast output includes:
+
 - Subdivision
-- Year
+- 2015 observed rainfall
+- Historical mean rainfall
+- Predicted 2016 rainfall
+- Difference from historical mean
+- Percentage difference
 
-### Seasons Used
+Output file:
 
-| Season | Months |
-|---|---|
-| Winter | January–February |
-| Pre-Monsoon | March–May |
-| Monsoon | June–September |
-| Post-Monsoon | October–December |
+`forecast_2016.csv`
 
-The project also includes a district-wise rainfall normal dataset for regional comparison and analysis.
+## 📈 Power BI Dashboard
 
----
+The Power BI dashboard contains four pages:
 
-## 🧹 Data Cleaning and Preprocessing
+### 1. Rainfall Overview
+Historical rainfall trends and subdivision comparison.
 
-The data preprocessing pipeline includes:
+### 2. Seasonal Analysis
+Seasonal rainfall trends and monsoon contribution.
 
-- Removing exact duplicate records.
-- Checking duplicate `(SUBDIVISION, YEAR)` combinations.
-- Standardizing subdivision names.
-- Converting year values to integer format.
-- Converting rainfall columns to numeric values.
-- Preserving genuine zero-rainfall observations.
-- Preserving missing rainfall values as missing rather than treating them as zero.
-- Recalculating seasonal rainfall totals from monthly rainfall where appropriate.
-- Validating annual rainfall against monthly rainfall totals.
-- Checking for negative rainfall values.
-- Checking missing years and missing rainfall values.
+### 3. Regional Analysis
+Regional rainfall statistics and variability.
 
-The cleaning process is implemented in:
+### 4. 2016 Prediction
+2015 observed vs 2016 predicted rainfall, historical mean comparison, and forecast details.
 
-```text
-clean_pipeline.py
+## 🛠️ Technologies Used
+
+- Python
+- Pandas
+- NumPy
+- Scikit-learn
+- Random Forest
+- Matplotlib
+- Power BI
+- DAX
+- GitHub
+
+## ⚙️ How to Run
+
+Install the required libraries:
+
+```bash
+pip install pandas numpy scikit-learn matplotlib
+Run the Python scripts in sequence:
+
+python clean_pipeline.py
+python build_ml_dataset.py
+python test_ml_dataset.py
+python train_models.py
+python forecast_2016_pipeline.py
+
+Open Rain_Prediction_India_2016.pbix in Microsoft Power BI Desktop to view the dashboard.
+
+📁 Project Files
+clean_pipeline.py — Data cleaning
+build_ml_dataset.py — ML dataset creation
+test_ml_dataset.py — Dataset validation
+train_models.py — Model training
+forecast_2016_pipeline.py — 2016 forecast
+seasonal_analysis.py — Seasonal analysis
+subdivision_analysis.py — Regional analysis
+final_report_check.py — Final validation
+forecast_2016.csv — Forecast results
+Rain_Prediction_India_2016.pbix — Power BI dashboard
+⚠️ Limitation
+
+The source dataset ends in 2015, so 2016 values are model-generated forecasts and should not be interpreted as actual observed rainfall.
